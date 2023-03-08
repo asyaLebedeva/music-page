@@ -59,7 +59,7 @@ const setSliderMax = () => {
 }
 
 const displayBufferedAmount = () => {
-    const bufferedAmount = Math.floor(audio.buffered.end(audio.buffered.length - 1));
+    const bufferedAmount = audio.buffered.length - 1;
     playCont.style.setProperty('--buffered-width', `${(bufferedAmount / timeline.max) * 100}%`);
 }
 
