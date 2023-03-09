@@ -1,21 +1,22 @@
 const playerBtn = document.querySelector('.play-button')
 const audio = document.querySelector('.audio')
 const timeline = document.querySelector('.timeline')
-const playBtnIcon = `<svg width="22" height="25" viewBox="0 0 22 25" fill="transparent" xmlns="http://www.w3.org/2000/svg">
-              <path d="M22 12.5L8.14564e-07 25L1.90735e-06 -9.6165e-07L22 12.5Z" fill="transparent"/>
-              </svg>`
+const controlBtn = document.querySelector('.play-pause');
 
-function toggleAudio () {
-  if (audio.paused) {
-    audio.play();
-    playerBtn.innerHTML = playBtnIcon;
-  } else {
-    audio.pause();
-    playerBtn.innerHTML = playBtnIcon;
-  }
+function playPause() {
+    if (audio.paused) {
+        audio.play();
+        controlBtn.className = "play";
+    } else { 
+        audio.pause();
+        controlBtn.className = "pause";
+    }
 }
 
-playerBtn.addEventListener('click', toggleAudio);
+controlBtn.addEventListener("click", playPause);
+audio.addEventListener("ended", function() {
+  controlBtn.className = "play";
+});
 
 function changeTimelinePosition () {
   const percentagePosition = (100*audio.currentTime) / audio.duration;
